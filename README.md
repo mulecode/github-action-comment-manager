@@ -4,6 +4,8 @@ GitHub plugin for commenting PR's
 
 ## How to use it
 
+with commentBody:
+
 ```yaml
   test_commenter:
     runs-on: ubuntu-latest
@@ -17,6 +19,21 @@ GitHub plugin for commenting PR's
           commentBody: |
             Hello, I am a comment.
             Thank you!
+```
+
+with commentBody:
+
+```yaml
+  test_commenter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mulecode/github-action-comment-manager@main
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          issueNumber: ${{ github.event.pull_request.number }}
+          commentTitle: "TEST-1234"
+          commentBodyFile: ./file_content.text
 ```
 
 The commentTitle is used to identify the comment,
