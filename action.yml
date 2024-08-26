@@ -1,0 +1,29 @@
+name: "Comment Manager"
+description: "Creates or updates comments on a pull request"
+
+inputs:
+  authToken:
+    description: "GitHub Token"
+    required: true
+  issueNumber:
+    description: "The issue or pull request number"
+    required: true
+  commentBody:
+    description: "The content of the comment"
+    required: true
+  commentTitle:
+    description: "A unique identifier to find the existing comment"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run Comment Manager Script
+      run: ${{ github.action_path }}/entrypoint.sh
+      shell: bash
+      env:
+        AUTH_TOKEN: ${{ inputs.authToken }}
+        ISSUE_NUMBER: ${{ inputs.issueNumber }}
+        COMMENT_TITLE: ${{ inputs.commentTitle }}
+        COMMENT_BODY: ${{ inputs.commentBody }}
+
