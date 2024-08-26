@@ -10,7 +10,10 @@ inputs:
     required: true
   commentBody:
     description: "The content of the comment"
-    required: true
+    required: false
+  commentBodyFile:
+    description: "The file containing the content of the comment"
+    required: false
   commentTitle:
     description: "A unique identifier to find the existing comment"
     required: true
@@ -26,4 +29,5 @@ runs:
         ISSUE_NUMBER: ${{ inputs.issueNumber }}
         COMMENT_TITLE: ${{ inputs.commentTitle }}
         COMMENT_BODY: ${{ inputs.commentBody }}
+        COMMENT_BODY_FILE: ${{ inputs.commentBodyFile }}
 
